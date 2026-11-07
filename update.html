@@ -335,6 +335,18 @@ footer a{color:var(--link)}
   $('#yr').textContent=new Date().getFullYear();
   renderList('');
   var h=(location.hash||'').replace('#','').toUpperCase(); if(h&&M.some(function(m){return m.id===h})) choose(h);
+  // add mentors who joined after this page was published
+  fetch(ENDPOINT+'?action=profiles').then(function(r){return r.json()}).then(function(j){
+    var added=false;
+    (j&&j.joiners||[]).forEach(function(x){
+      if(!x.id||!x.name||M.some(function(m){return m.id===x.id})) return;
+      M.push({id:x.id,title:x.title||'',name:x.name,role:x.role||'',org:x.org||'',line:x.line||'',li:x.li||'',joins:x.joins||'Mentor',
+              progs:['BBA','BCA','MBA','MCA'].filter(function(p){return String(x.progs).indexOf(p)>-1}),photo:x.photo||''});
+      added=true;
+    });
+    if(added){ M.sort(function(a,b){return a.name.localeCompare(b.name)}); if(cur===0) renderList($('#q').value);
+      if(!sel&&h&&M.some(function(m){return m.id===h})) choose(h); }
+  }).catch(function(){});
 })();
 </script>
 </body>

@@ -657,9 +657,36 @@ footer a{color:var(--link)}
     c.dataset.text=(full+' '+c.querySelector('.ro').textContent+' '+c.querySelector('.ln').textContent).toLowerCase();
     markDone(c);
   }
+  // ---------- new mentors who joined through the form (added automatically) ----------
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var ACA=/professor|lecturer|dean|faculty|principal|\bhod\b|head of (the )?department|academic|vice.?chancellor|registrar|teacher|research scholar/i;
+  function rank(role){ role=String(role||'').toLowerCase();
+    if(/chairman|chief executive|\bceo\b|founder|managing director|president|partner|vice.?chancellor|\bdean\b/.test(role)&&!/vice president/.test(role)) return 1;
+    if(/director|vice president|\bvp\b|chief|\bhead\b|^professor|professor \(|professor of practice|\bprofessor\b(?!.*(assistant|associate))/.test(role)) return 2;
+    if(/principal|lead|associate professor|architect|senior manager|section head/.test(role)) return 3;
+    if(/manager|assistant professor|consultant|partner/.test(role)) return 4;
+    return 5; }
+  function addJoiner(m){
+    if(!m||!m.id||document.getElementById('m-'+m.id)||!m.name) return;
+    var sec=document.querySelector(ACA.test(m.role)?'.sec.aca .grid':'.sec.ind .grid'); if(!sec) return;
+    var full=((m.title||'')+' '+m.name).trim(), progs=['BBA','BCA','MBA','MCA'].filter(function(p){return String(m.progs).indexOf(p)>-1});
+    var a=document.createElement('article'); a.className='card'; a.id='m-'+m.id; a.dataset.id=m.id; a.dataset.progs=progs.join(' ');
+    a.dataset.rank=rank(m.role); a.dataset.dyn='1';
+    a.dataset.text=(full+' '+m.role+' '+m.org+' '+m.line).toLowerCase();
+    var view=m.li?'<a class="view" href="'+esc(m.li)+'" target="_blank" rel="noopener" aria-label="View LinkedIn profile of '+esc(full)+'">View Profile <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>':'<span class="view off">Profile on request</span>';
+    a.innerHTML='<div class="ph"><span class="ini" aria-hidden="true">'+esc(initials(m.name))+'</span>'+(m.photo?'<img alt="'+esc(full)+'" src="'+esc(m.photo)+'" onerror="this.remove()">':'')+'<span class="joins">'+esc(m.joins||'Mentor')+'</span></div>'+
+      '<div class="bd"><h3>'+esc(full)+'</h3><p class="ro">'+esc([m.role,m.org].filter(Boolean).join(', '))+'</p><p class="ln">'+esc(m.line)+'</p>'+
+      '<div class="tg" aria-label="Programmes">'+progs.map(function(p){return '<span>'+p+'</span>'}).join('')+'</div>'+view+
+      '<a class="claim" href="update.html#'+esc(m.id)+'">Is this you? Check details &amp; add photo</a></div>';
+    // new joiners go after the published list, higher posts first among themselves
+    var after=null; [].slice.call(sec.querySelectorAll('.card[data-dyn]')).forEach(function(c){ if(+c.dataset.rank<=+a.dataset.rank) after=c; });
+    if(after) after.after(a); else { var dyn=sec.querySelector('.card[data-dyn]'); if(dyn) sec.insertBefore(a,dyn); else sec.appendChild(a); }
+    cards.push(a); var im=a.querySelector('.ph img'); if(im) im.addEventListener('load',function(){markDone(a)});
+  }
   fetch(ENDPOINT+'?action=profiles').then(function(r){return r.json()}).then(function(j){
-    if(!j||!j.profiles) return;
-    Object.keys(j.profiles).forEach(function(id){ apply(id,j.profiles[id]); });
+    if(!j) return;
+    (j.joiners||[]).forEach(addJoiner);
+    Object.keys(j.profiles||{}).forEach(function(id){ apply(id,j.profiles[id]); });
     document.getElementById('sN').textContent=cards.length;
     document.getElementById('sI').textContent=document.querySelectorAll('.sec.ind .card').length;
     document.getElementById('sA').textContent=document.querySelectorAll('.sec.aca .card').length;
