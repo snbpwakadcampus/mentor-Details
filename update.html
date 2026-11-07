@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Update Your Mentor Profile</title>
+<meta name="description" content="SNBP Wakad Campus mentors and advisors: check your details, add your photo and LinkedIn link.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2d1b4d">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e0a43a'/%3E%3Ctext x='32' y='29' text-anchor='middle' font-family='Arial' font-weight='900' font-size='23' fill='%232d1b4d'%3ESN%3C/text%3E%3Ctext x='32' y='53' text-anchor='middle' font-family='Arial' font-weight='900' font-size='23' fill='%232d1b4d'%3EBP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: purple band with the 3 steps; form panel on the left, live card preview on the right */
+:root{--plum:#2d1b4d;--plum-2:#432a6e;--gold:#e0a43a;--gold-ink:#8a5a0b;--bg:#f6f4fa;--surface:#fff;--ink:#1d1530;--muted:#6a6180;--line:#e2dcec;--chip:#efeaf7;--ok:#1f8a5b;--err:#b4232f;--link:#2b3f8f;
+--display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--body:"Public Sans","Segoe UI",system-ui,sans-serif;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#140d22;--surface:#1e1530;--ink:#efeaf8;--muted:#a79dbd;--line:#342950;--chip:#2a1f42;--gold-ink:#f0bd60;--plum-2:#5a3d8c;--link:#a9b8ff;--err:#ff8a93;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#140d22;--surface:#1e1530;--ink:#efeaf8;--muted:#a79dbd;--line:#342950;--chip:#2a1f42;--gold-ink:#f0bd60;--plum-2:#5a3d8c;--link:#a9b8ff;--err:#ff8a93;color-scheme:dark}
+*{box-sizing:border-box} [hidden]{display:none!important}
+html,body{margin:0} body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header{background:var(--plum);color:#efe7fb;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:auto -10% -70% 45%;height:150%;background:radial-gradient(closest-side,rgba(224,164,58,.25),transparent 70%);pointer-events:none}
+header .wrap{padding-block:28px 84px;position:relative;z-index:1;display:grid;gap:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font:600 13px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#d9cdf0}
+.logo{width:44px;height:44px;border-radius:11px;background:var(--gold);display:grid;place-items:center;font:800 13px/1.02 var(--display);color:var(--plum);text-align:center;flex:none}
+.top a{color:#efe7fb;font-size:14px;font-weight:600}
+h1{font:800 clamp(30px,4.6vw,46px)/1.06 var(--display);letter-spacing:-.02em;margin:4px 0 0;color:#fff;text-wrap:balance}
+h1 em{font-style:normal;color:var(--gold)}
+.lede{margin:0;max-width:64ch;color:#d9cdf0;font-size:16.5px}
+main .wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;margin-top:-56px;position:relative;z-index:2;padding-block:0 48px}
+@media (max-width:880px){main .wrap{grid-template-columns:minmax(0,1fr)} .side{order:-1}}
+.panel{align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px -24px rgba(45,27,77,.45);min-width:0}
+.steps{display:flex;border-bottom:1px solid var(--line)}
+.steps > span{flex:1;padding:15px 8px;font:600 14px/1.2 var(--body);color:var(--muted);display:flex;gap:8px;align-items:center;justify-content:center;border-bottom:3px solid transparent;margin-bottom:-1px}
+.steps .n{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--chip);font:700 12px/1 var(--body)}
+.steps > .on{color:var(--ink);border-bottom-color:var(--gold)} .steps .on .n{background:var(--plum);color:#fff}
+.steps .ok .n{background:var(--ok);color:#fff}
+@media (max-width:520px){.steps .t{display:none} .steps .on .t{display:inline}}
+.body{padding:26px 28px 28px;display:grid;gap:20px}
+@media (max-width:520px){.body{padding:22px 18px}}
+h2{font:700 23px/1.2 var(--display);margin:0}
+.sub{margin:-12px 0 0;color:var(--muted);font-size:15px}
+label.f{display:grid;gap:6px;font-weight:600;font-size:14px;min-width:0}
+label.f small,.lab small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=url],input[type=search],input[type=tel],select{width:100%;height:48px;font:16px/1.4 var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:11px;padding:0 13px}
+input:focus,select:focus{outline:none;border-color:var(--plum-2);box-shadow:0 0 0 4px rgba(90,61,140,.18)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.row.tn{grid-template-columns:110px minmax(0,1fr)}
+@media (max-width:560px){.row,.row.tn{grid-template-columns:minmax(0,1fr)}}
+.hint{font-size:12.5px;color:var(--muted);font-weight:400}
+.err{color:var(--err);font-size:13.5px;font-weight:500}
+.list{display:grid;gap:8px;max-height:380px;overflow:auto;padding:2px}
+.pick{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 12px;cursor:pointer;color:var(--ink);font:inherit}
+.pick:hover,.pick:focus-visible{border-color:var(--plum-2);outline:none}
+.pick b{display:block;font-size:15px}
+.pick span.s{display:block;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick .go{font-weight:700;color:var(--link);font-size:14px}
+.av{width:44px;height:44px;border-radius:50%;overflow:hidden;background:linear-gradient(140deg,var(--plum),var(--plum-2));color:var(--gold);display:grid;place-items:center;font:800 15px/1 var(--display)}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.who{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--chip);border-radius:14px;padding:12px 14px}
+.who .av{width:52px;height:52px}
+.who b{display:block} .who span{font-size:13.5px;color:var(--muted)}
+.lnk{background:none;border:0;color:var(--link);font:600 14px var(--body);cursor:pointer;text-decoration:underline;padding:0}
+.btn{border:0;border-radius:12px;padding:14px 22px;font:700 15.5px/1 var(--body);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.btn.primary{background:var(--plum);color:#fff} .btn.primary:hover{background:var(--plum-2)}
+.btn.gold{background:var(--gold);color:var(--plum)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn[disabled]{opacity:.6;cursor:progress}
+.btn:focus-visible,.lnk:focus-visible,.top a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pf{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;border:1.5px dashed var(--line);background:var(--bg);border-radius:14px;padding:12px 14px}
+.pf.has{border-style:solid;border-color:var(--ok)}
+.pf .av{width:60px;height:60px}
+.pf .tx{min-width:0;font-size:14px} .pf .tx b{display:block} .pf .tx span{color:var(--muted);font-size:13px}
+.pf-in{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.pf-pick{cursor:pointer;white-space:nowrap;padding:10px 14px;font-size:14px}
+.pf:focus-within .pf-pick{outline:3px solid var(--gold);outline-offset:2px}
+@media (max-width:520px){.pf{grid-template-columns:auto minmax(0,1fr)} .pf-pick{grid-column:1 / -1}}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.choice{grid-template-columns:minmax(0,1fr)}}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt .face{display:grid;gap:3px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg);height:100%}
+.opt .face b{font-size:15px} .opt .face span{font-size:13px;color:var(--muted)}
+.opt input:checked + .face{border-color:var(--plum);background:var(--chip);box-shadow:inset 0 0 0 1px var(--plum)}
+.opt input:focus-visible + .face{box-shadow:0 0 0 4px rgba(90,61,140,.25)}
+.note{background:var(--chip);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--ink)}
+/* preview card (same look as the mentors page) */
+.side{min-width:0}
+.side .sticky{position:sticky;top:20px;display:grid;gap:12px}
+.cap{font:700 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column}
+.ph{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:12px;overflow:hidden;background:linear-gradient(140deg,var(--plum),var(--plum-2))}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(224,164,58,.35),transparent 55%)}
+.ini{position:absolute;inset:0;display:grid;place-items:center;font:800 64px/1 var(--display);color:var(--gold)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.joins{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.94);color:#2d1b4d;font:700 10.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:6px 9px}
+.card h3{margin:14px 0 0;font:700 21px/1.2 var(--display)}
+.card .ro{margin:4px 0 0;font-weight:700;font-size:14.5px;line-height:1.4}
+.card .ln{margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.45}
+.card .view{margin-top:10px;font-weight:700;color:var(--link);font-size:15px}
+.card .view.off{color:var(--muted);font-weight:600;font-size:13.5px}
+.done{padding:34px 28px 36px;display:grid;gap:14px}
+.done .tick{width:52px;height:52px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font:800 24px/1 var(--body)}
+.done h2{font-size:28px}
+.done p{margin:0;color:var(--muted)}
+.done .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.join{background:var(--plum);color:#efe7fb;border-radius:16px;padding:18px;display:grid;gap:10px}
+.join b{font:800 18px/1.2 var(--display);color:#fff} .join span{font-size:14px;color:#d9cdf0}
+footer{color:var(--muted);font-size:13px;padding-block:0 32px}
+footer .wrap{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+footer a{color:var(--link)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><div class="brand"><span class="logo" aria-hidden="true">SN<br>BP</span>SNBP · Wakad Campus, Pune</div><a href="mentors.html">View all mentors →</a></div>
+  <h1>Check &amp; update your <em>mentor profile</em></h1>
+  <p class="lede">Thank you for joining our Mentor &amp; Advisor Pool. Please check how your profile appears, correct anything that needs it, and add your photo and LinkedIn link. Your changes appear on our mentors page straight away.</p>
+</div></header>
+
+<main><div class="wrap">
+  <section class="panel" aria-label="Update your profile">
+    <div class="steps" id="steps"><span data-s="0" class="on"><span class="n">1</span><span class="t">Find You</span></span><span data-s="1"><span class="n">2</span><span class="t">Confirm It's You</span></span><span data-s="2"><span class="n">3</span><span class="t">Update Profile</span></span></div>
+
+    <!-- STEP 1: find -->
+    <div class="body" data-step="0">
+      <h2>Find your profile</h2>
+      <p class="sub">Search your name and select it.</p>
+      <label class="f"><span hidden>Search</span><input type="search" id="q" placeholder="Type your name or organisation" autocomplete="off"></label>
+      <div class="list" id="list" role="list"></div>
+      <p class="hint">Not on the list? <a href="https://snbpwakadcampus.github.io/mentor/">Join the Mentor &amp; Advisor Pool</a> first. It takes about 3 minutes.</p>
+    </div>
+
+    <!-- STEP 2: verify -->
+    <div class="body" data-step="1" hidden>
+      <h2>Confirm it's you</h2>
+      <p class="sub">Use the email and mobile number you gave when you joined the pool.</p>
+      <div class="who" id="who"></div>
+      <div class="row">
+        <label class="f">Registered email<input type="email" id="vEmail" autocomplete="email" placeholder="name@organisation.com"></label>
+        <label class="f">Last 4 digits of your mobile<input type="tel" id="vM4" inputmode="numeric" maxlength="4" placeholder="e.g. 4304" autocomplete="off"></label>
+      </div>
+      <p class="err" id="vErr" role="alert"></p>
+      <div class="nav"><button type="button" class="btn ghost" id="back1">Back</button><button type="button" class="btn primary" id="verify">Continue</button></div>
+    </div>
+
+    <!-- STEP 3: update -->
+    <form class="body" data-step="2" id="f" novalidate hidden>
+      <h2>Update your profile</h2>
+      <p class="sub">Your card on the right changes as you type.</p>
+      <div class="row tn">
+        <label class="f">Title<select id="title"><option>Dr.</option><option>Prof.</option><option>Mr.</option><option>Ms.</option><option>Mrs.</option><option>Adv.</option><option>CA</option></select></label>
+        <label class="f">Full name<input type="text" id="name" maxlength="60"></label>
+      </div>
+      <div class="row">
+        <label class="f">Designation<input type="text" id="role" maxlength="90"></label>
+        <label class="f">Organisation<input type="text" id="org" maxlength="110"></label>
+      </div>
+      <label class="f">Qualification or highlight <small>(one line, e.g. "PhD (Management), IIT Roorkee")</small><input type="text" id="line" maxlength="120"></label>
+      <label class="f">LinkedIn profile link<input type="url" id="li" placeholder="https://www.linkedin.com/in/your-name" autocomplete="url"><span class="err" id="liErr"></span></label>
+      <div class="f" style="display:grid;gap:8px">
+        <span class="lab" style="font-weight:600;font-size:14px">Profile photo <small>(JPG or PNG, a clear headshot works best)</small></span>
+        <div class="pf" id="pfBox">
+          <span class="av" id="pfAv"></span>
+          <span class="tx"><b id="pfName">Add your photo</b><span id="pfHint">Square crop is done for you.</span></span>
+          <label class="btn ghost pf-pick" for="photo" id="pfPick">Choose Photo</label>
+          <input type="file" id="photo" accept="image/jpeg,image/png,image/webp" class="pf-in">
+        </div>
+        <span class="err" id="pfErr"></span>
+      </div>
+      <div style="display:grid;gap:8px">
+        <span class="lab" style="font-weight:600;font-size:14px">Show my profile on the SNBP mentors page?</span>
+        <div class="choice">
+          <label class="opt"><input type="radio" name="show" value="Yes" checked><span class="face"><b>Yes, show my profile</b><span>Name, designation, organisation, photo and LinkedIn link.</span></span></label>
+          <label class="opt"><input type="radio" name="show" value="No"><span class="face"><b>No, hide my profile</b><span>I stay in the pool, but my card is not shown.</span></span></label>
+        </div>
+      </div>
+      <p class="note">By saving, you confirm these details are correct and allow SNBP Wakad Campus to show them on its website. You can update or hide your profile here at any time.</p>
+      <p class="err" id="sErr" role="alert"></p>
+      <div class="nav"><button type="button" class="btn ghost" id="back2">Back</button><button type="submit" class="btn gold" id="save">Save My Profile</button></div>
+    </form>
+
+    <!-- DONE -->
+    <div class="done" id="done" hidden>
+      <span class="tick" aria-hidden="true">✓</span>
+      <h2 id="doneH">Your profile is updated</h2>
+      <p id="doneP">Thank you. Your changes are now live on the SNBP mentors page.</p>
+      <div class="acts"><a class="btn primary" id="viewMine" href="mentors.html">View My Card</a><button type="button" class="btn ghost" id="again">Update Another Profile</button></div>
+    </div>
+  </section>
+
+  <aside class="side" aria-label="Preview">
+    <div class="sticky">
+      <span class="cap">How your card looks</span>
+      <article class="card" id="pv">
+        <div class="ph"><span class="ini" id="pvIni">?</span><span class="joins" id="pvJoins">Mentor</span></div>
+        <h3 id="pvName">Select your name</h3>
+        <p class="ro" id="pvRo"></p>
+        <p class="ln" id="pvLn"></p>
+        <span class="view off" id="pvLi">LinkedIn not added yet</span>
+      </article>
+      <div class="join"><b>Know someone who should mentor?</b><span>Share our joining link with industry leaders and academicians in your network.</span><a class="btn gold" href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a></div>
+    </div>
+  </aside>
+</div></main>
+
+<footer><div class="wrap"><span>© <span id="yr">2026</span> SNBP Wakad Campus, Pune. All rights reserved.</span><span>Need help? Write to snbpwakadcampus@gmail.com</span></div></footer>
+
+<script>
+(function(){
+  var ENDPOINT="https://script.google.com/macros/s/AKfycby5mljNNH7DtiTJ5SwCMFJooRHMP7X6KxhgZ08Pkx15pYYdE_hSA8Ut2tHEVH0akaiD/exec";
+  var M=[{"id": "JOLPJ", "title": "Dr.", "name": "Akansha Gautam", "role": "Associate Professor", "org": "Tulas University, Dehradun", "line": "PhD · MBA · M.Com · UGC NET Qualified", "li": "https://www.linkedin.com/in/dr-akansha-gautam-6a0a0a1aa", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": "photos/JOLPJ.jpg"}, {"id": "WQSTK", "title": "Dr.", "name": "Archana Gupta", "role": "Founder", "org": "GreyMattersInLife", "line": "Leadership Coach, Transition Coach & Workplace Skills Facilitator", "li": "https://www.linkedin.com/in/archanagupta-greymattersinlife", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "OYL59", "title": "Mr.", "name": "Arnaab Booral", "role": "Coach, Trainer & Training Consultant", "org": "Independent", "line": "25+ years in Leadership Coaching & L&D · 2,000+ sessions delivered", "li": "https://www.linkedin.com/in/arnaabbooral/", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": "photos/OYL59.jpg"}, {"id": "SS4JQ", "title": "Mrs.", "name": "Arnika Gupta", "role": "Corporate Soft Skills Trainer", "org": "Independent", "line": "SHRM, HRCI & CPD certified trainer · 13+ years in education", "li": "https://www.linkedin.com/in/arnika-gupta-ba1321427", "joins": "Mentor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "0I8C9", "title": "Dr.", "name": "Avinash Thakur", "role": "Director", "org": "AIC", "line": "Incubation & Startup Innovation", "li": "", "joins": "Advisor", "progs": ["MBA"], "photo": ""}, {"id": "OLWAF", "title": "Mr.", "name": "Chirag Suchak", "role": "Head – HR", "org": "Settlin · Visiting Faculty at GIM, NMIMS & Welingkar", "line": "Human Resources", "li": "https://www.linkedin.com/in/chirag-suchak-1701cs", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "R9LG6", "title": "Mr.", "name": "Danish Razavi", "role": "Vice President – Operations", "org": "DTekMicro", "line": "Operations & Human Resources", "li": "https://www.linkedin.com/in/danish-razavi-8aa1988/", "joins": "Mentor", "progs": ["BBA"], "photo": ""}, {"id": "XYMV7", "title": "Prof.", "name": "Deepika Udeshi", "role": "Professor of Practice", "org": "Panache Consulting", "line": "PGDBM (Marketing), NMIMS · KPMG-certified L&D professional", "li": "https://www.linkedin.com/in/deepikaudeshi", "joins": "Advisor", "progs": ["BBA", "MBA"], "photo": "photos/XYMV7.jpg"}, {"id": "QVNU4", "title": "Mr.", "name": "Gokul Ojha", "role": "Director – GCC Advisory", "org": "SrKay.com", "line": "AI, Technology, GCC, CoE & Cross-border Investment", "li": "", "joins": "Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "2ITWJ", "title": "Dr.", "name": "J. Shanti", "role": "Associate Professor", "org": "Alliance University, Bengaluru", "line": "PhD (Management), Bangalore University · PGDM, MANAGE", "li": "https://www.linkedin.com/in/drshantijmanagementfaculty/", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "CA6VC", "title": "Mr.", "name": "Manish Kumar", "role": "Principal Software Engineer", "org": "Microsoft", "line": "DevOps & Cloud Infrastructure Architecture", "li": "", "joins": "Mentor", "progs": ["MCA"], "photo": ""}, {"id": "MPHF9", "title": "Mr.", "name": "Manish Soni", "role": "Chairman", "org": "Clarity Growth Advisory", "line": "Former E-commerce Head at Elica, Panasonic & Samsung", "li": "", "joins": "Mentor", "progs": ["MBA"], "photo": ""}, {"id": "NWI4D", "title": "Dr.", "name": "Manu T U", "role": "Assistant Professor", "org": "Siddaganga Institute of Technology, Tumakuru", "line": "Marketing, Entrepreneurship & Strategy", "li": "", "joins": "Advisor", "progs": ["MBA"], "photo": ""}, {"id": "55TAY", "title": "Ms.", "name": "Mary Jeraldine Kavitha", "role": "Head – Learning & Organisation Development", "org": "Cholamandalam MS General Insurance", "line": "IIM Lucknow · MBA (HR & Marketing)", "li": "https://www.linkedin.com/in/mary-jeraldine-kavitha", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": "photos/55TAY.jpg"}, {"id": "32OIU", "title": "Mr.", "name": "Monal Parag", "role": "Founder", "org": "The Great Himalaya Food Company", "line": "Agritech, Procurement, Product Development & E-commerce Scaling", "li": "https://www.linkedin.com/in/monal-parag-94359123", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA"], "photo": ""}, {"id": "K8GWC", "title": "Mrs.", "name": "Neha Thakur", "role": "Founder", "org": "Mindificient", "line": "Leadership Training, Outbound Training & Corporate Culture", "li": "https://www.linkedin.com/in/neha-thakur-a59968134", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "BO74L", "title": "Dr.", "name": "Nilesh Puntambekar", "role": "Section Head – Intellectual Property", "org": "TVS Motor Company", "line": "Innovation & IP Leader · Inventor with 20 patents filed", "li": "https://www.linkedin.com/in/nilesh-puntambekar", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": "photos/BO74L.jpg"}, {"id": "4MOCE", "title": "Mrs.", "name": "Nimisha Chatterjee", "role": "HR Business Partner", "org": "Societe Generale Global Solution Centre", "line": "HR Leadership, Performance Management & Growth Mindset", "li": "https://www.linkedin.com/in/nimisha-kunnath-chatterjee", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "NP3SA", "title": "Ms.", "name": "Palak Khanna", "role": "Manager", "org": "Vector Bridge", "line": "Project Management", "li": "", "joins": "Mentor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "DDL6T", "title": "Prof.", "name": "Parikshit Kala", "role": "Professor (Marketing)", "org": "School of Management & Commerce, Tulas University", "line": "PhD (Business Management), HNB Garhwal University · MBA", "li": "https://www.linkedin.com/in/prof-dr-parikshit-kala", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "2BW47", "title": "Mr.", "name": "Prakash Thakur", "role": "Head – Support Services", "org": "Manipal Hospitals", "line": "Customer Service, P&L & Facility Management", "li": "https://www.linkedin.com/in/prakash-thakur-89770427", "joins": "Mentor & Advisor", "progs": ["BBA"], "photo": ""}, {"id": "XFPOP", "title": "Mr.", "name": "Prashant Srivastava", "role": "Vice President", "org": "Prakhar Technology", "line": "MBA (Marketing & HR) · Sales & Business Mentor", "li": "", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": "photos/XFPOP.jpg"}, {"id": "TJ3F0", "title": "Mr.", "name": "Pratap Malladi", "role": "Analytics Strategist", "org": "WPPES", "line": "Marketing & Data Analytics · Data, Digital and AI", "li": "https://www.linkedin.com/in/malladipratapkumar", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "RKLS2", "title": "Mr.", "name": "Pravin Gaykar", "role": "Architect", "org": "Tata Consultancy Services", "line": "AWS, Terraform, DevOps & Reliability Engineering", "li": "https://www.linkedin.com/in/pravin-gaykar-7a32344a/", "joins": "Mentor & Advisor", "progs": ["BCA", "MCA"], "photo": ""}, {"id": "GBQ5A", "title": "Dr.", "name": "Preeti Mulay", "role": "Former Professor", "org": "Symbiosis Institute of Technology, Pune & Nagpur", "line": "PhD in Machine Learning · Agentic AI for Research", "li": "https://www.linkedin.com/in/preeti-mulay-phd-in-ml-536b43a9", "joins": "Mentor & Advisor", "progs": ["MCA"], "photo": ""}, {"id": "MPCPJ", "title": "Dr.", "name": "Raksha Benjwal", "role": "Associate Professor", "org": "School of Management & Commerce, Tulas University", "line": "PhD (Commerce – Finance), HNB Garhwal University", "li": "https://www.linkedin.com/in/dr-raksha-vashist-benjwal-219141376/", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": "photos/MPCPJ.jpg"}, {"id": "0MQU8", "title": "Mr.", "name": "Ramesh Bindroo", "role": "Manager – Enterprise Client Support", "org": "IDeaS – A SAS Company", "line": "Global Client Support Operations & Hospitality Technology", "li": "https://www.linkedin.com/in/ramesh-bindroo-chba%C2%AE-30644842/", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": ""}, {"id": "2KCFB", "title": "Dr.", "name": "Sachin Wadikhaye", "role": "Enterprise Innovation Management Expert", "org": "Eaton", "line": "PhD (EECS), University of Newcastle, Australia", "li": "https://www.linkedin.com/in/sachinwadikhaye", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "2RTQK", "title": "Mr.", "name": "Saurabh Agarwal", "role": "Consultant & Industry Lead", "org": "IBM, UNESCO", "line": "Analytics, Agentic AI & Generative AI", "li": "https://www.linkedin.com/in/saurabh-agarwal-b2929719/", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "2AIPZ", "title": "Mr.", "name": "Shivakant Pandey", "role": "Senior Director", "org": "Druva Data Solutions", "line": "Leadership, Program Management & Artificial Intelligence", "li": "https://www.linkedin.com/in/shivakant-pandey", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "F94SZ", "title": "Dr.", "name": "Shrawan Kumar", "role": "Professor (CSE) & Dean – Engineering and Technology", "org": "The Assam Kaziranga University", "line": "PhD (CSE), Shoolini University · ME, FH Emden, Germany", "li": "https://linkedin.com/in/dr-shrawan-kumar-gupta-aab607a7", "joins": "Mentor & Advisor", "progs": ["MCA"], "photo": ""}, {"id": "OBSBQ", "title": "Dr.", "name": "Snehal Maheshkar", "role": "Founder & Director", "org": "Snehveda Consulting LLP", "line": "PhD (Training & Development) · MBA · M.A. (Psychology)", "li": "https://www.linkedin.com/in/dr-snehal-maheshkar/", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": "photos/OBSBQ.jpg"}, {"id": "DZ7FW", "title": "Ms.", "name": "Sri Deepti Kocherlakota", "role": "People Business Partner", "org": "Vendavo", "line": "MBA (HR), SIBM Bengaluru · Senior Management Program, IIM Udaipur", "li": "https://www.linkedin.com/in/ksdeepti", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "JR920", "title": "Mr.", "name": "Stephen Lloyd Taylor", "role": "Vice President – HR and L&D", "org": "EOX Vantage", "line": "MBA (HRM), Pondicherry University · EDP, XLRI", "li": "https://www.linkedin.com/in/stephen-taylor-a506927", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": "photos/JR920.jpg"}, {"id": "Z4PCZ", "title": "Mr.", "name": "Suhas Jategaonkar", "role": "Professor of Practice", "org": "JSPM University, Pune", "line": "35+ years in Sales, Marketing & Rural Business · FICSI Master Trainer", "li": "", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": ""}, {"id": "V8XP1", "title": "Mr.", "name": "Sunil Kumar Jha", "role": "Test Manager", "org": "Cybage Software Pvt. Ltd.", "line": "MBA (International Business) · Scrum Master & QA Automation", "li": "", "joins": "Mentor & Advisor", "progs": ["BCA", "MCA"], "photo": "photos/V8XP1.jpg"}, {"id": "WM850", "title": "Dr.", "name": "Sunita Singhal", "role": "Founder", "org": "Crackkar Technologies", "line": "Python for Management · HRM & General Management", "li": "https://www.linkedin.com/in/sunita-singhal", "joins": "Mentor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "E1DNB", "title": "Mr.", "name": "Sushil Bhujade", "role": "Chief Executive Officer", "org": "Vasify Tech Pvt. Ltd.", "line": "MBA (Marketing), Indira Institute of Business Management", "li": "https://www.linkedin.com/in/sushilbhujade", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": ""}, {"id": "JWSIB", "title": "Dr.", "name": "Tanaya Patil", "role": "Associate Professor", "org": "Sanjivani College of Engineering, Kopargaon", "line": "PhD (Marketing Management), Savitribai Phule Pune University", "li": "https://www.linkedin.com/in/dr-tanaya-patil-962403184/", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": "photos/JWSIB.jpg"}, {"id": "31S3V", "title": "Dr.", "name": "Umang Gupta", "role": "Associate Professor", "org": "Tulas University, Dehradun", "line": "PhD (Management), IIT Roorkee · MBA (Finance)", "li": "", "joins": "Mentor", "progs": ["BBA"], "photo": "photos/31S3V.jpg"}, {"id": "HIO8J", "title": "Mr.", "name": "Utkarsh Mishra", "role": "Head – Business Delivery & Innovation", "org": "Vedanta V-Spark DeepTech Ventures", "line": "PGDM (Business Design), Welingkar · Professor of Practice at IIMs & IITs", "li": "https://www.linkedin.com/in/utkarshmis", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": ""}, {"id": "YHJVF", "title": "Dr.", "name": "Varun Kumar Singh", "role": "Assistant Professor", "org": "Tulas University, Dehradun", "line": "Marketing, Sales, Entrepreneurship & Innovation", "li": "", "joins": "Mentor & Advisor", "progs": ["BBA", "MBA"], "photo": ""}, {"id": "AT6PA", "title": "Adv.", "name": "Vedant Pujari", "role": "Equity Partner", "org": "Accures IP Care LLP", "line": "Intellectual Property, Corporate & Commercial Law, Privacy Law", "li": "https://www.linkedin.com/in/vedant-pujari", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}, {"id": "PYLE4", "title": "Adv.", "name": "Viddulata Gawade", "role": "Director", "org": "Vivant Holistic Skill Development Centre", "line": "Law, Mediation & Indian Knowledge Systems", "li": "", "joins": "Mentor & Advisor", "progs": ["MBA"], "photo": ""}, {"id": "OG4AJ", "title": "Mr.", "name": "Vikas Garg", "role": "Joint Director", "org": "Software Technology Parks of India (STPI), Ministry of Electronics & IT, Govt. of India", "line": "IT/ITES, ESDM, Software & Cloud Programmes", "li": "", "joins": "Mentor & Advisor", "progs": ["BBA", "BCA", "MBA", "MCA"], "photo": ""}];
+  var $=function(s){return document.querySelector(s)}, $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+  var sel=null, cred=null, photoData=null, cur=0;
+  function ini(n){var p=n.replace(/\./g,' ').split(/\s+/).filter(Boolean);return ((p[0]||'?')[0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase();}
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function avatar(m,photo){return photo?'<img alt="" src="'+esc(photo)+'" onerror="this.parentNode.textContent=\''+ini(m.name)+'\'">':ini(m.name);}
+  function show(n){cur=n;$$('[data-step]').forEach(function(s){s.hidden=+s.dataset.step!==n});
+    $$('#steps > span').forEach(function(s,i){s.classList.toggle('on',i===n);s.classList.toggle('ok',i<n)});
+    $('.panel').scrollIntoView({behavior:'smooth',block:'start'});}
+  // ---- step 1: list ----
+  function renderList(q){
+    q=(q||'').toLowerCase().trim();
+    var h=M.filter(function(m){return !q||(m.title+' '+m.name+' '+m.org+' '+m.role).toLowerCase().indexOf(q)>-1})
+      .map(function(m){return '<button type="button" class="pick" role="listitem" data-id="'+m.id+'"><span class="av">'+avatar(m,m.photo)+'</span><span><b>'+esc(m.title+' '+m.name)+'</b><span class="s">'+esc(m.role+', '+m.org)+'</span></span><span class="go">Select</span></button>';}).join('');
+    $('#list').innerHTML=h||'<p class="hint">No match. Check the spelling, or <a href="https://snbpwakadcampus.github.io/mentor/">join the pool</a>.</p>';
+  }
+  $('#q').addEventListener('input',function(){renderList(this.value)});
+  $('#list').addEventListener('click',function(e){var b=e.target.closest('.pick'); if(b) choose(b.dataset.id);});
+  function choose(id){
+    sel=M.filter(function(m){return m.id===id})[0]; if(!sel) return;
+    $('#who').innerHTML='<span class="av">'+avatar(sel,sel.photo)+'</span><span><b>'+esc(sel.title+' '+sel.name)+'</b><span>'+esc(sel.role+', '+sel.org)+'</span></span><button type="button" class="lnk" id="notme">Not you?</button>';
+    $('#notme').addEventListener('click',function(){show(0)});
+    $('#vErr').textContent=''; preview(sel); show(1); setTimeout(function(){$('#vEmail').focus({preventScroll:true})},250);
+  }
+  // ---- step 2: verify ----
+  $('#vM4').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,4)});
+  $('#back1').addEventListener('click',function(){show(0)});
+  $('#verify').addEventListener('click',function(){
+    var em=$('#vEmail').value.trim().toLowerCase(), m4=$('#vM4').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){$('#vErr').textContent='Please enter the email address you registered with.';return;}
+    if(!/^\d{4}$/.test(m4)){$('#vErr').textContent='Please enter the last 4 digits of your registered mobile number.';return;}
+    var b=this; b.disabled=true; b.textContent='Checking…'; $('#vErr').textContent='';
+    fetch(ENDPOINT+'?action=verify&id='+encodeURIComponent(sel.id)+'&email='+encodeURIComponent(em)+'&m4='+m4)
+      .then(function(r){return r.json()})
+      .then(function(j){
+        if(!j.ok){$('#vErr').textContent="These details don't match our records for "+sel.title+' '+sel.name+'. Use the email and mobile number you gave when you joined, or write to snbpwakadcampus@gmail.com.';return;}
+        cred={email:em,m4:m4}; fill(j.latest||{}); show(2);
+      })
+      .catch(function(){$('#vErr').textContent='We could not reach our server. Check your internet connection and try again.';})
+      .then(function(){b.disabled=false;b.textContent='Continue';});
+  });
+  // ---- step 3: edit ----
+  function fill(u){
+    $('#title').value=u.title||sel.title; $('#name').value=u.name||sel.name; $('#role').value=u.role||sel.role;
+    $('#org').value=u.org||sel.org; $('#line').value=u.line||sel.line; $('#li').value=u.li||sel.li||'';
+    photoData=null; sel.livePhoto=u.photo||sel.photo||'';
+    $$('input[name=show]').forEach(function(r){r.checked=(r.value===(u.show||'Yes'))});
+    setPf(); preview();
+  }
+  function cur3(){return {title:$('#title').value,name:$('#name').value.trim(),role:$('#role').value.trim(),org:$('#org').value.trim(),line:$('#line').value.trim(),li:$('#li').value.trim()};}
+  function preview(base){
+    var v=base?{title:base.title,name:base.name,role:base.role,org:base.org,line:base.line,li:base.li}:cur3();
+    var photo=photoData||(sel&&(sel.livePhoto||sel.photo))||'';
+    var ph=$('#pv .ph'), old=ph.querySelector('img'); if(old) old.remove();
+    if(photo){var im=new Image(); im.alt=''; im.onerror=function(){im.remove()}; im.src=photo; ph.insertBefore(im,$('#pvJoins'));}
+    $('#pvIni').textContent=ini(v.name||'?'); $('#pvJoins').textContent=sel?sel.joins:'Mentor';
+    $('#pvName').textContent=(v.title+' '+v.name).trim(); $('#pvRo').textContent=[v.role,v.org].filter(Boolean).join(', ');
+    $('#pvLn').textContent=v.line; var ok=/^https:\/\/([a-z]{2,3}\.)?(www\.)?linkedin\.com\/in\//i.test(v.li||'');
+    $('#pvLi').textContent=ok?'View Profile →':'LinkedIn not added yet'; $('#pvLi').className='view'+(ok?'':' off');
+  }
+  ['title','name','role','org','line','li'].forEach(function(id){$('#'+id).addEventListener('input',function(){preview()})});
+  $('#li').addEventListener('blur',function(){var v=this.value.trim().split('?')[0]; if(v&&!/^https?:\/\//.test(v)) v='https://'+v; this.value=v.replace(/^http:/,'https:'); preview(); checkLi();});
+  function checkLi(){var v=$('#li').value.trim(); var ok=!v||/^https:\/\/([a-z]{2,3}\.)?(www\.)?linkedin\.com\/in\/[^\s]+$/i.test(v);
+    $('#liErr').textContent=ok?'':'Please paste your LinkedIn profile link. It looks like https://www.linkedin.com/in/your-name'; return ok;}
+  function setPf(){var p=photoData||sel.livePhoto||sel.photo; $('#pfAv').innerHTML=avatar(sel,p);
+    $('#pfBox').classList.toggle('has',!!photoData); $('#pfName').textContent=photoData?'New photo ready':(p?'Current photo':'Add your photo');
+    $('#pfHint').textContent=photoData?'It will replace your current photo when you save.':(p?'Choose a new one to replace it.':'Square crop is done for you.');
+    $('#pfPick').textContent=p?'Change Photo':'Choose Photo';}
+  $('#photo').addEventListener('change',function(){
+    var f=this.files&&this.files[0]; $('#pfErr').textContent=''; if(!f) return;
+    if(!/^image\/(jpeg|png|webp)$/.test(f.type)){$('#pfErr').textContent='Please choose a JPG or PNG photo.';this.value='';return;}
+    if(f.size>10*1024*1024){$('#pfErr').textContent='This photo is larger than 10 MB. Please choose a smaller one.';this.value='';return;}
+    var r=new FileReader(); r.onload=function(){var img=new Image(); img.onload=function(){
+      var s=Math.min(img.width,img.height), sx=(img.width-s)/2, sy=Math.max(0,(img.height-s)*0.2);
+      var c=document.createElement('canvas'); c.width=c.height=Math.min(600,s); var x=c.getContext('2d');
+      x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(img,sx,sy,s,s,0,0,c.width,c.height);
+      photoData=c.toDataURL('image/jpeg',0.86); setPf(); preview();};
+      img.onerror=function(){$('#pfErr').textContent='We could not read this photo. Please try another file.'}; img.src=r.result;}; r.readAsDataURL(f);
+  });
+  $('#back2').addEventListener('click',function(){show(1)});
+  $('#f').addEventListener('submit',function(e){
+    e.preventDefault(); var v=cur3(); $('#sErr').textContent='';
+    if(v.name.length<2||!v.role||!v.org){$('#sErr').textContent='Please fill in your name, designation and organisation.';return;}
+    if(!checkLi()){$('#li').focus();return;}
+    var showV=($$('input[name=show]').filter(function(r){return r.checked})[0]||{}).value||'Yes';
+    var body={action:'profileUpdate',id:sel.id,email:cred.email,m4:cred.m4,title:v.title,name:v.name,role:v.role,org:v.org,line:v.line,li:v.li,show:showV};
+    if(photoData) body.photoData=photoData.split('base64,')[1];
+    var b=$('#save'); b.disabled=true; b.textContent=photoData?'Uploading Photo…':'Saving…';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)})
+      .then(function(r){return r.json()})
+      .then(function(j){ if(j&&j.ok) finish(showV); else $('#sErr').textContent='We could not confirm your identity. Please go back and check your email and mobile digits.'; },
+            function(){ // some browsers block reading the reply; send again without reading it
+              return fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}).then(function(){finish(showV,true)}); })
+      .catch(function(){$('#sErr').textContent='We could not save your profile. Check your internet connection and try again.';})
+      .then(function(){b.disabled=false;b.textContent='Save My Profile';});
+  });
+  function finish(showV,unsure){
+    $$('[data-step]').forEach(function(s){s.hidden=true}); $('#steps').hidden=true; $('#done').hidden=false;
+    $('#doneH').textContent=showV==='No'?'Your profile is hidden':'Your profile is updated';
+    $('#doneP').textContent=showV==='No'?'Thank you. You remain in the pool, and your card will not be shown on the mentors page.':
+      (unsure?'Thank you. Your changes have been sent and will appear on the mentors page within a minute.':'Thank you. Your changes are now live on the SNBP mentors page.');
+    $('#viewMine').hidden=showV==='No'; $('#viewMine').href='mentors.html#m-'+sel.id;
+    $('.panel').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  $('#again').addEventListener('click',function(){ sel=null; cred=null; photoData=null; $('#vEmail').value=''; $('#vM4').value=''; $('#photo').value='';
+    $('#done').hidden=true; $('#steps').hidden=false; $('#q').value=''; renderList('');
+    $('#pvName').textContent='Select your name'; $('#pvRo').textContent=''; $('#pvLn').textContent=''; $('#pvIni').textContent='?';
+    var im=$('#pv .ph img'); if(im) im.remove(); show(0); });
+  $('#yr').textContent=new Date().getFullYear();
+  renderList('');
+  var h=(location.hash||'').replace('#','').toUpperCase(); if(h&&M.some(function(m){return m.id===h})) choose(h);
+})();
+</script>
+</body>
+</html>
