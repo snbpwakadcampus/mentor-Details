@@ -119,7 +119,7 @@ footer a{color:var(--link)}
 <header><div class="wrap">
   <div class="top"><div class="brand"><span class="logo" aria-hidden="true">SN<br>BP</span>SNBP · Wakad Campus, Pune</div><a href="mentors.html">View all mentors →</a></div>
   <h1>Check &amp; update your <em>mentor profile</em></h1>
-  <p class="lede">Thank you for joining our Mentor &amp; Advisor Pool. Please check how your profile appears, correct anything that needs it, and add your photo and LinkedIn link. Your changes appear on our mentors page straight away.</p>
+  <p class="lede">Thank you for joining our Mentor &amp; Advisor Pool. Please check how your profile appears, correct anything that needs it, and add your photo and LinkedIn link. Your changes appear on our mentors page once the SNBP team approves them.</p>
 </div></header>
 
 <main><div class="wrap">
@@ -311,7 +311,7 @@ footer a{color:var(--link)}
     fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)})
       .then(function(r){return r.json()})
       .then(function(j){
-          if(j&&j.ok&&j.id) return finish(showV);
+          if(j&&j.ok&&j.id) return finish(showV,false,j.pending!==false);
           if(j&&j.error==='not_matched') return $('#sErr').textContent='We could not confirm your identity. Please go back and check your email and mobile digits.';
           if(j&&j.ok&&!j.id) return $('#sErr').textContent='Our profile service is being updated, so your changes were not saved. Please try again in a few minutes. (Admin: publish the new version of the Google script.)';
           $('#sErr').textContent='Your changes could not be saved: '+((j&&j.error)||'unknown error')+'. Please try again or write to snbpwakadcampus@gmail.com.'; },
@@ -320,12 +320,12 @@ footer a{color:var(--link)}
       .catch(function(){$('#sErr').textContent='We could not save your profile. Check your internet connection and try again.';})
       .then(function(){b.disabled=false;b.textContent='Save My Profile';});
   });
-  function finish(showV,unsure){
+  function finish(showV,unsure,pending){
     $$('[data-step]').forEach(function(s){s.hidden=true}); $('#steps').hidden=true; $('#done').hidden=false;
-    $('#doneH').textContent=showV==='No'?'Your profile is hidden':'Your profile is updated';
+    $('#doneH').textContent=showV==='No'?'Your profile is hidden':(pending?'Sent for approval':'Your profile is updated');
     $('#doneP').textContent=showV==='No'?'Thank you. You remain in the pool, and your card will not be shown on the mentors page.':
-      (unsure?'Thank you. Your changes have been sent and will appear on the mentors page within a minute.':'Thank you. Your changes are now live on the SNBP mentors page.');
-    $('#viewMine').hidden=showV==='No'; $('#viewMine').href='mentors.html#m-'+sel.id;
+      'Thank you. Your changes have been sent to the SNBP team and will appear on the mentors page once approved.';
+    $('#viewMine').hidden=showV==='No'; $('#viewMine').href='mentors.html#m-'+sel.id; $('#viewMine').textContent='View Mentors Page';
     $('.panel').scrollIntoView({behavior:'smooth',block:'start'});
   }
   $('#again').addEventListener('click',function(){ sel=null; cred=null; photoData=null; photoSmall=null; $('#vEmail').value=''; $('#vM4').value=''; $('#photo').value='';
