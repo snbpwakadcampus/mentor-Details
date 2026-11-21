@@ -22,6 +22,25 @@ header::after{content:"";position:absolute;inset:auto -10% -70% 45%;height:150%;
 header .wrap{padding-block:30px 40px;position:relative;z-index:1;display:grid;gap:16px}
 .brand{display:flex;align-items:center;gap:12px;font:600 13px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#d9cdf0}
 .logo{width:44px;height:44px;border-radius:11px;background:var(--gold);display:grid;place-items:center;font:800 13px/1.02 var(--display);color:var(--plum);text-align:center;flex:none}
+.logo-img{width:auto;height:54px;background:transparent;padding:0}.logo-img img{height:54px;width:auto;display:block}
+.brand small{display:block;font-size:11.5px;letter-spacing:.12em;color:var(--gold);margin-top:3px}
+.motto{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:2px;color:#efe7fb;font:700 clamp(16px,2vw,19px)/1.35 var(--display)}
+.motto i{font-style:normal;color:var(--gold)}
+.site-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin:22px 0 6px}
+.site-strip div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.site-strip b{display:block;font:800 17px/1.25 var(--display);color:var(--ink)}
+.site-strip span{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+.site-strip a{color:var(--link);font-weight:700}
+.btn-w{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 18px;font:700 15px/1 var(--body);text-decoration:none;background:#25d366;color:#fff}
+.btn-w:hover{filter:brightness(1.05)}
+.wa-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;background:#e9f8ef;border:1.5px solid #25d366;border-radius:16px;padding:16px 18px;color:#0c3b22;text-align:left}
+.wa-card .wa-i{width:46px;height:46px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center}
+.wa-card b{display:block;font-size:16.5px;line-height:1.3;color:#0c3b22}
+.wa-card span{display:block;font-size:14px;color:#2f5b43;margin-top:2px}
+.wa-btn{grid-column:1/-1;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff!important;text-decoration:none;border-radius:12px;padding:13px 18px;font-weight:800;font-size:15.5px}
+.wa-btn:hover{filter:brightness(1.05)}
+.wa-btn:focus-visible{outline:3px solid #0c3b22;outline-offset:2px}
+
 h1{font:800 clamp(32px,5vw,52px)/1.05 var(--display);letter-spacing:-.02em;margin:6px 0 0;color:#fff;text-wrap:balance}
 h1 em{font-style:normal;color:var(--gold)}
 .lede{margin:0;max-width:62ch;color:#d9cdf0;font-size:17px}
@@ -86,13 +105,20 @@ footer a{color:var(--link)}
 </head>
 <body>
 <header><div class="wrap">
-  <div class="brand"><span class="logo" aria-hidden="true">SN<br>BP</span>SNBP · Wakad Campus, Pune</div>
+  <div class="brand"><span class="logo logo-img"><img src="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp" alt="SNBP University" onerror="this.parentNode.classList.remove('logo-img');this.parentNode.innerHTML='SN<br>BP'"></span><span>SNBP University<small>School of Business Management, Pune</small></span></div>
   <h1>Meet our <em>Mentors &amp; Advisors</em><sup class="ast">*</sup></h1>
-  <p class="lede">Industry leaders, academicians and entrepreneurs who guide our BBA, BCA, MBA and MCA students through mentoring, expert talks, live projects and academic advisory.</p>
+  <p class="motto"><span>One Student – One Industry Mentor</span><i>Born in the AI generation. Guided by an industry mentor.</i></p>
+  <p class="lede">Industry leaders, academicians and entrepreneurs who guide our BBA, BCA, MBA and MCA students through one-to-one mentoring, expert talks, live projects and academic advisory.</p>
   <div class="stats"><span><b id="sN">45</b> Mentors &amp; Advisors</span><span><b id="sI">33</b> Industry</span><span><b id="sA">12</b> Academic</span><span>BBA · BCA · MBA · MCA</span></div>
-  <div class="cta"><a class="btn-g" href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a><a class="btn-o" href="update.html">Mentors: Check &amp; Update Your Profile</a></div>
+  <div class="cta"><a class="btn-g" href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a><a class="btn-o" href="update.html">Mentors: Check &amp; Update Your Profile</a><a class="btn-o" href="https://snbpuniversity.edu.in/wakad/" target="_blank" rel="noopener">Visit SBM Website</a></div>
 </div></header>
 <main class="wrap">
+  <section class="site-strip" aria-label="About SNBP University School of Business Management">
+    <div><b>Four programmes, applied AI</b><span>BBA, BCA, MBA and MCA with AI in every programme and a curriculum as per NEP 2020.</span></div>
+    <div><b>A mentor for every student</b><span>Each student is matched one-to-one with a working professional from their chosen field — from admission to placement.</span></div>
+    <div><b>Learn by doing</b><span>Live industry projects, internships, expert masterclasses, hackathons and industry visits.</span></div>
+    <div><b>Admissions 2027–28 open</b><span><a href="https://snbpuniversity.edu.in/wakad/" target="_blank" rel="noopener">snbpuniversity.edu.in/wakad</a> · <a href="tel:+919028388150">+91 90283 88150</a></span></div>
+  </section>
   <div class="bar">
     <div class="chips" role="group" aria-label="Filter by programme">
       <button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="BBA" aria-pressed="false">BBA</button><button type="button" data-f="BCA" aria-pressed="false">BCA</button><button type="button" data-f="MBA" aria-pressed="false">MBA</button><button type="button" data-f="MCA" aria-pressed="false">MCA</button>
@@ -605,10 +631,10 @@ footer a{color:var(--link)}
     </article>
     </div>
   </section>
-  <aside class="join-band"><div><h2>Want to guide our students?</h2><p>Join the SNBP Wakad Campus Mentor &amp; Advisor Pool in 3 minutes.</p></div><a class="btn-g" href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a></aside>
+  <aside class="join-band"><div><h2>Want to guide our students?</h2><p>Join the SNBP University Mentor &amp; Advisor Pool in 3 minutes. Already a mentor? Join our mentors’ WhatsApp group.</p></div><div class="cta"><a class="btn-g" href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a><a class="btn-w" href="https://chat.whatsapp.com/J7D4sTFG9VGKo5Us4apWtC" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 000-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> Mentors’ WhatsApp Group</a></div></aside>
   <p class="empty" id="empty" hidden>No mentor matches your search. Try another name or programme.</p>
 </main>
-<footer><div class="wrap"><p class="fn">* The mentors and advisors listed here are associated with SNBP Wakad Campus as visiting mentors and advisors. They are not full-time faculty or employees of SNBP.</p><span>© <span id="yr">2026</span> SNBP Wakad Campus, Pune. All rights reserved.</span><span>Want to join the pool? <a href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a></span></div></footer>
+<footer><div class="wrap"><p class="fn">* The mentors and advisors listed here are associated with SNBP Wakad Campus as visiting mentors and advisors. They are not full-time faculty or employees of SNBP.</p><span>© <span id="yr">2026</span> SNBP University – School of Business Management, Shankar Kalat Nagar, Wakad, Pune 411057 · <a href="tel:+919028388150">+91 90283 88150</a> · <a href="https://snbpuniversity.edu.in/wakad/" target="_blank" rel="noopener">snbpuniversity.edu.in/wakad</a></span><span>Want to join the pool? <a href="https://snbpwakadcampus.github.io/mentor/">Become a Mentor</a> · <a href="https://chat.whatsapp.com/J7D4sTFG9VGKo5Us4apWtC" target="_blank" rel="noopener">Mentors’ WhatsApp group</a></span></div></footer>
 <script>
 (function(){
   var f='all', q='', cards=[].slice.call(document.querySelectorAll('.card')), btns=[].slice.call(document.querySelectorAll('.chips button'));
