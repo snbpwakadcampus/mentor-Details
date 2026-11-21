@@ -7,7 +7,8 @@
 <meta name="description" content="SNBP Wakad Campus mentors and advisors: check your details, add your photo and LinkedIn link.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2d1b4d">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e0a43a'/%3E%3Ctext x='32' y='29' text-anchor='middle' font-family='Arial' font-weight='900' font-size='23' fill='%232d1b4d'%3ESN%3C/text%3E%3Ctext x='32' y='53' text-anchor='middle' font-family='Arial' font-weight='900' font-size='23' fill='%232d1b4d'%3EBP%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/webp" href="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp">
+<link rel="apple-touch-icon" href="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
@@ -109,6 +110,10 @@ input:focus,select:focus{outline:none;border-color:var(--plum-2);box-shadow:0 0 
 .done .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .logo-img{width:auto;height:54px;background:transparent;padding:0}.logo-img img{height:54px;width:auto;display:block}
 .brand small{display:block;font-size:11.5px;letter-spacing:.12em;color:var(--gold);margin-top:3px}
+.first{justify-self:start;width:fit-content;max-width:100%;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:rgba(224,164,58,.16);border:1px solid rgba(224,164,58,.55);color:#f6d58e;border-radius:999px;padding:7px 14px;font-weight:700;font-size:13.5px;line-height:1.3;letter-spacing:.01em;margin:0}
+.first b{color:#fff}
+.site-link{color:#f6d58e;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(246,213,142,.5)}
+.site-link:hover{color:#fff}
 .wa-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;background:#e9f8ef;border:1.5px solid #25d366;border-radius:16px;padding:16px 18px;color:#0c3b22;text-align:left}
 .wa-card .wa-i{width:46px;height:46px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center}
 .wa-card b{display:block;font-size:16.5px;line-height:1.3;color:#0c3b22}
@@ -128,6 +133,7 @@ footer a{color:var(--link)}
 <body>
 <header><div class="wrap">
   <div class="top"><div class="brand"><span class="logo logo-img"><img src="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp" alt="SNBP University" onerror="this.parentNode.classList.remove('logo-img');this.parentNode.innerHTML='SN<br>BP'"></span><span>SNBP University<small>School of Business Management, Pune</small></span></div><a href="mentors.html">View all mentors →</a></div>
+  <p class="first">★ <span><b>India’s first university campus led by an industry leader</b> · <a class="site-link" href="https://snbpuniversity.edu.in/wakad/" target="_blank" rel="noopener">snbpuniversity.edu.in/wakad</a></span></p>
   <h1>Check &amp; update your <em>mentor profile</em></h1>
   <p class="lede">Thank you for joining our Mentor &amp; Advisor Pool. Please check how your profile appears, correct anything that needs it, and add your photo and LinkedIn link. Your changes appear on our mentors page once the SNBP team approves them.</p>
 </div></header>
@@ -364,5 +370,6 @@ footer a{color:var(--link)}
   }).catch(function(){});
 })();
 </script>
+<script src="https://snbpwakadcampus.github.io/mentor-Details/vb-chat.js" defer></script>
 </body>
 </html>

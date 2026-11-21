@@ -6,7 +6,8 @@
 <title>SNBP Mentors &amp; Advisors</title>
 <meta name="description" content="Meet the mentors and advisors guiding the BBA, BCA, MBA and MCA programmes at SNBP Wakad Campus, Pune.">
 <meta name="theme-color" content="#2d1b4d">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e0a43a'/%3E%3Ctext x='32' y='29' text-anchor='middle' font-family='Arial' font-weight='900' font-size='23' fill='%232d1b4d'%3ESN%3C/text%3E%3Ctext x='32' y='53' text-anchor='middle' font-family='Arial' font-weight='900' font-size='23' fill='%232d1b4d'%3EBP%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/webp" href="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp">
+<link rel="apple-touch-icon" href="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
@@ -26,6 +27,10 @@ header .wrap{padding-block:30px 40px;position:relative;z-index:1;display:grid;ga
 .brand small{display:block;font-size:11.5px;letter-spacing:.12em;color:var(--gold);margin-top:3px}
 .motto{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:2px;color:#efe7fb;font:700 clamp(16px,2vw,19px)/1.35 var(--display)}
 .motto i{font-style:normal;color:var(--gold)}
+.first{justify-self:start;width:fit-content;max-width:100%;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:rgba(224,164,58,.16);border:1px solid rgba(224,164,58,.55);color:#f6d58e;border-radius:999px;padding:7px 14px;font-weight:700;font-size:13.5px;line-height:1.3;letter-spacing:.01em;margin:0}
+.first b{color:#fff}
+.site-link{color:#f6d58e;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(246,213,142,.5)}
+.site-link:hover{color:#fff}
 .site-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin:22px 0 6px}
 .site-strip div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
 .site-strip b{display:block;font:800 17px/1.25 var(--display);color:var(--ink)}
@@ -106,6 +111,7 @@ footer a{color:var(--link)}
 <body>
 <header><div class="wrap">
   <div class="brand"><span class="logo logo-img"><img src="https://snbpuniversity.com/assets/golden%20logo-BS4muviq.webp" alt="SNBP University" onerror="this.parentNode.classList.remove('logo-img');this.parentNode.innerHTML='SN<br>BP'"></span><span>SNBP University<small>School of Business Management, Pune</small></span></div>
+  <p class="first">★ <span><b>India’s first university campus led by an industry leader</b> · <a class="site-link" href="https://snbpuniversity.edu.in/wakad/" target="_blank" rel="noopener">snbpuniversity.edu.in/wakad</a></span></p>
   <h1>Meet our <em>Mentors &amp; Advisors</em><sup class="ast">*</sup></h1>
   <p class="motto"><span>One Student – One Industry Mentor</span><i>Born in the AI generation. Guided by an industry mentor.</i></p>
   <p class="lede">Industry leaders, academicians and entrepreneurs who guide our BBA, BCA, MBA and MCA students through one-to-one mentoring, expert talks, live projects and academic advisory.</p>
@@ -709,10 +715,24 @@ footer a{color:var(--link)}
     if(after) after.after(a); else { var dyn=sec.querySelector('.card[data-dyn]'); if(dyn) sec.insertBefore(a,dyn); else sec.appendChild(a); }
     cards.push(a); var im=a.querySelector('.ph img'); if(im) im.addEventListener('load',function(){markDone(a)});
   }
+  // ---------- one card per person: merge repeat submissions (same name, titles ignored) ----------
+  function personKey(n){ return String(n||'').toLowerCase().replace(/\b(dr|prof|mr|mrs|ms|miss|ca|cs|adv|er|shri|smt|sir)\b\.?/g,' ').replace(/[^a-z]/g,''); }
+  function cardScore(c){ return (c.querySelector('.ph img')?4:0)+(c.querySelector('a.view')?2:0)+(c.dataset.dyn?0:1)+((c.querySelector('.ln')||{}).textContent||'').length/1000; }
+  function dedupe(){
+    var groups={};
+    cards.forEach(function(c){ var h=c.querySelector('h3'); if(!h) return; var k=personKey(h.textContent); if(k.length<4) return; (groups[k]=groups[k]||[]).push(c); });
+    Object.keys(groups).forEach(function(k){
+      var g=groups[k]; if(g.length<2) return;
+      g.sort(function(a,b){ return cardScore(b)-cardScore(a); });
+      g.slice(1).forEach(function(c){ c.remove(); cards=cards.filter(function(x){return x!==c}); });
+    });
+  }
+  window.snbpMentorNames=function(){ return cards.map(function(c){ var h=c.querySelector('h3'); return h?h.textContent:''; }); };
   fetch(ENDPOINT+'?action=profiles').then(function(r){return r.json()}).then(function(j){
     if(!j) return;
     (j.joiners||[]).forEach(addJoiner);
     Object.keys(j.profiles||{}).forEach(function(id){ apply(id,j.profiles[id]); });
+    dedupe();
     document.getElementById('sN').textContent=cards.length;
     document.getElementById('sI').textContent=document.querySelectorAll('.sec.ind .card').length;
     document.getElementById('sA').textContent=document.querySelectorAll('.sec.aca .card').length;
@@ -720,5 +740,6 @@ footer a{color:var(--link)}
   }).catch(function(){ /* page still works with the published details */ });
 })();
 </script>
+<script src="https://snbpwakadcampus.github.io/mentor-Details/vb-chat.js" defer></script>
 </body>
 </html>
